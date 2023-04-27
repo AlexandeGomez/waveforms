@@ -1,0 +1,40 @@
+@startuml ram_timming
+clock clk with period 1
+clock clk_slow with period 2
+binary "reset" as rst
+binary "write enable" as we
+concise "dataRam_Rn" as drn
+concise "addRam_Rn" as adrn 
+
+
+@1 as :rs
+@2 as :re
+@2 as :ws1
+@3 as :we1
+@4 as :ws2
+@5 as :we2
+
+@0
+rst is high
+drn is "32'hxxxxx"
+adrn is "11'hxxxxx"
+@1
+rst is low
+@2
+rst is high
+@1
+we is high
+drn is "32'd-13"
+adrn is "11'd0"
+@3
+we is low
+drn is "32'd12.67"
+adrn is "11'd1"
+@5
+we is slow
+
+highlight :rs to :re #lightBlue:reset
+highlight :ws1 to :we1 #Gold:Write
+highlight :ws2 to :we2 #Gold:Write
+
+@enduml

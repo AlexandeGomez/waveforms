@@ -1,0 +1,17 @@
+@startuml accum
+(*) -> "START"
+if "clk" then
+    if "!rst" then
+        -->[true] "aux_ab_real <= 0"
+        --> "aux_ab_imag <= 0"
+        -up-> "START"
+    else
+        -->[false] "aux_ab_real <= a1b1-a2b2"
+        --> "aux_ab_imag <= a1b2+a2b1"
+        -up-> "START"
+    endif
+else
+    -up-> "START"
+endif
+
+@enduml

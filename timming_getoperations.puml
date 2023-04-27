@@ -1,0 +1,102 @@
+@startuml operations
+clock clk with period 1
+clock clkslow with period 2
+
+binary "signalAddrGen" as sad
+
+concise "read_addr_M1" as ra1
+concise "read_addr_M1" as ra2
+
+concise "a1_tb" as a1
+concise "a2_tb" as a2
+concise "b1_tb" as b1
+concise "b2_tb" as b2
+
+concise "a1b1_tb" as a1b1
+concise "a2b2_tb" as a2b2
+concise "a1b2_tb" as a1b2
+concise "a2b1_tb" as a2b1
+
+concise "ab_real_tb" as abr
+concise "ab_imag_tb" as abi
+
+
+@sad
+0 is slow
++2 is high
++2 is Low
++12 is high
++2 is slow
++12 is high
++2 is slow
+
+@ra1
+0 is "11'd0"
++10 is "11'd1"
++14 is "11'd2"
+@2 <-> @10 : actualizacion de direccion 8 ciclos
+@16 <-> @24 : actualizacion de direccion 8 ciclos
+
+@ra2
+0 is "11'd0"
++10 is "11'd32"
++14 is "11'd64"
+@2 <-> @10 : actualizacion de direccion 8 ciclos
+@16 <-> @24 : actualizacion de direccion 8 ciclos
+
+@a1
+0 is DataReal0
++12 is DataReal1
++14 is DataReal2
+@a2
+0 is DataImag0
++12 is DataImag1
++14 is DataImag2
+@b1
+0 is DataReal0
++12 is DataReal32
++14 is DataReal64
+@b2
+0 is DataImag0
++12 is DataImag32
++14 is DataImag64
+
+@a1b1
+0 is Prod_a1b1_0x0
++13 is Prod_a1b1_1x32
++14 is Prod_a1b1_2x64
+@a2b2
+0 is Prod_a2b2_0x0
++13 is Prod_a2b2_1x32
++14 is Prod_a2b2_1x64
+@a1b2
+0 is Prod_a1b2_0x0
++13 is Prod_a1b2_1x32
++14 is Prod_a1b2_2x64
+@a2b1
+0 is Prod_a2b1_0x0
++13 is Prod_a2b1_1x32
++14 is Prod_a2b1_2x64
+
+@abr
+0 is parteReal_ab_0x0
++14 is parteReal_ab_1x32
++14 is parteReal_ab_2x64
+@10 <-> @14 : propagacion de 4 ciclos
+@24 <-> @28 : propagacion de 4 ciclos
+
+@abi
+0 is parteImag_ab_0x0
++14 is parteImag_ab_1x32
++14 is parteImag_ab_2x64
+@10 <-> @14 : propagacion de 4 ciclos
+@24 <-> @28 : propagacion de 4 ciclos
+
+
+
+
+highlight 2 to 4 #Gold:GenerarDir
+highlight 16 to 18 #Gold:GenerarDir
+highlight 30 to 32 #Gold:GenerarDir
+
+@enduml
