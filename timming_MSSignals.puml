@@ -1,0 +1,30 @@
+@startuml signalOperations
+clock clk with period 1
+clock clkslow with period 2
+
+binary "signal_tb" as sg
+binary "signalGenAddr_tb" as sgad
+binary "signalAcum_tb" as sgac
+
+concise "ab_real" as abr
+concise "ab_imag" as abi
+
+concise "accum_real" as accumR
+concise "accum_imag" as accmI
+
+
+@sg
+0 is los
+
+
+@abr
+0 is parteReal_ab_0x0
++14 is parteReal_ab_1x32
++14 is parteReal_ab_2x64
+
+@abi
+0 is parteImag_ab_0x0
++14 is parteImag_ab_1x32
++14 is parteImag_ab_2x64
+
+@enduml
