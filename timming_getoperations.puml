@@ -34,15 +34,15 @@ concise "ab_imag_tb" as abi
 0 is "11'd0"
 +10 is "11'd1"
 +14 is "11'd2"
-@2 <-> @10 : actualizacion de direccion 8 ciclos
-@16 <-> @24 : actualizacion de direccion 8 ciclos
+@2 <-> @10 : actualizacion de direccion 8 ciclos de latencia
+@16 <-> @24 : actualizacion de direccion 8 ciclos de latencia
 
 @ra2
 0 is "11'd0"
 +10 is "11'd32"
 +14 is "11'd64"
-@2 <-> @10 : actualizacion de direccion 8 ciclos
-@16 <-> @24 : actualizacion de direccion 8 ciclos
+@2 <-> @10 : actualizacion de direccion 8 ciclos de latencia
+@16 <-> @24 : actualizacion de direccion 8 ciclos de latencia
 
 @a1
 0 is DataReal0
@@ -82,21 +82,21 @@ concise "ab_imag_tb" as abi
 0 is parteReal_ab_0x0
 +14 is parteReal_ab_1x32
 +14 is parteReal_ab_2x64
-@10 <-> @14 : propagacion de 4 ciclos
-@24 <-> @28 : propagacion de 4 ciclos
+@10 <-> @14 : valor calculado con latencia de 4 ciclos
+@24 <-> @28 : valor calculado con latencia de 4 ciclos
 
 @abi
 0 is parteImag_ab_0x0
 +14 is parteImag_ab_1x32
 +14 is parteImag_ab_2x64
-@10 <-> @14 : propagacion de 4 ciclos
-@24 <-> @28 : propagacion de 4 ciclos
+@10 <-> @14 : valor calculado con latencia de 4 ciclos
+@24 <-> @28 : valor calculado con latencia de 4 ciclos
 
 
 
 
-highlight 2 to 4 #Gold:GenerarDir
-highlight 16 to 18 #Gold:GenerarDir
-highlight 30 to 32 #Gold:GenerarDir
+highlight 2 to 4 #LightGoldenRodYellow:GenerarDir
+highlight 16 to 18 #LightGoldenRodYellow:GenerarDir
+highlight 30 to 32 #LightGoldenRodYellow:GenerarDir
 
 @enduml

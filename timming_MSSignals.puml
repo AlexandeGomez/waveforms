@@ -3,28 +3,133 @@ clock clk with period 1
 clock clkslow with period 2
 
 binary "signal_tb" as sg
+concise "statemachine_signal_operacion" as smso
+
 binary "signalGenAddr_tb" as sgad
-binary "signalAcum_tb" as sgac
+concise "statemachine_signal_addr1" as smsad1
+concise "statemachine_signal_addr2" as smsad2
 
 concise "ab_real" as abr
 concise "ab_imag" as abi
 
-concise "accum_real" as accumR
-concise "accum_imag" as accmI
+binary "signalAcum_tb" as sgac
 
+concise "accum_real" as accumR
+concise "accum_imag" as accumI
+
+binary "flag_real" as fr
+binary "flag_imag" as fi
 
 @sg
-0 is los
+0 is low
++2 is high
++2 is low
++12 is high
++2 is low
++12 is high
++2 is low
 
+@smso
+0 is "IDLE"
++2 is "GENADDR"
+smso -> sgad@+2
++2 is "WAIT"
++8 is "ACUMULATE"
+smso -> sgac@+2
++2 is "IDLE"
++2 is "GENADDR"
++2 is "WAIT"
++8 is "ACUMULATE"
++2 is "IDLE"
++2 is "GENADDR"
++2 is "WAIT"
++8 is "ACUMULATE"
++2 is "IDLE"
+@2 <-> @4 : Genera la señal para actualizar los addr de las RAM
+@12 <-> @14 : Genera la señal para acumular el valor actual de las salidas ab_real/ab_imag
+
+@sgad
+0 is low
++4 is high
++2 is low
++12 is high
++2 is low
++12 is high
++2 is low
+
+@smsad1
+0 is "IDLE"
++6 is "CONDADDR"
++2 is "CONDAUX"
++2 is "OUT"
++2 is "CNTRF"
++2 is "IDLE"
++6 is "CONDADDR"
++2 is "CONDAUX"
++2 is "OUT"
++2 is "CNTRF"
++2 is "IDLE"
++6 is "CONDADDR"
++2 is "CONDAUX"
++2 is "OUT"
++2 is "CNTRF"
++2 is "IDLE"
+@10 <-> @12 : actualiza la direccion de lectura de la RAM Matriz 1
+
+@smsad2
+0 is "IDLE"
++6 is "CONDADDR"
++2 is "CONDJUMP"
++2 is "OUT"
++2 is "CNTRF"
++2 is "IDLE"
++6 is "CONDADDR"
++2 is "CONDJUMP"
++2 is "OUT"
++2 is "CNTRF"
++2 is "IDLE"
++6 is "CONDADDR"
++2 is "CONDJUMP"
++2 is "OUT"
++2 is "CNTRF"
++2 is "IDLE"
+@10 <-> @12 : actualiza la direccion de lectura de la RAM Matriz 2s
 
 @abr
 0 is parteReal_ab_0x0
-+14 is parteReal_ab_1x32
++28 is parteReal_ab_1x32
 +14 is parteReal_ab_2x64
 
 @abi
 0 is parteImag_ab_0x0
-+14 is parteImag_ab_1x32
++28 is parteImag_ab_1x32
 +14 is parteImag_ab_2x64
+
+@sgac
+0 is low
++14 is high
++2 is low
++12 is high
++2 is low
++12 is high
++2 is low
+
+@accumR
+0 is "32'0"
++14 is accum_plus_parteReal_ab_0x0
++14 is accum_plus_parteReal_ab_1x32
++14 is accum_plut_parteReal_ab_2x64
+
+@accumI
+0 is "32'0"
++14 is accum_plus_parteImag_ab_0x0
++14 is accum_plus_parteImag_ab_1x32
++14 is accum_plut_parteImag_ab_2x64
+
+
+
+highlight 2 to 4 #LightGoldenRodYellow:signaltb
+highlight 16 to 18 #LightGoldenRodYellow:signaltb
+highlight 30 to 32 #LightGoldenRodYellow:signaltb
 
 @enduml
