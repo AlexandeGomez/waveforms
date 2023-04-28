@@ -1,0 +1,10 @@
+@startuml pres_dia
+(*) -> "START"
+if "clk" then
+    if "!rst" then
+        -> []
+else
+    -up-> "START"
+endif
+
+@enduml
