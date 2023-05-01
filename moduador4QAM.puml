@@ -1,0 +1,64 @@
+@startuml
+title Modulador 4QAM con filtros y sumadores
+
+rectangle "Generador de señal digital" as Generador
+rectangle "Modulador 4QAM" as Modulador
+rectangle "Sumador I" as SumadorI
+rectangle "Sumador Q" as SumadorQ
+rectangle "Filtro de paso bajo" as FiltroLP
+rectangle "Canal de transmisión" as Canal
+rectangle "Filtro de paso alto" as FiltroHP
+rectangle "Demodulador 4QAM" as Demodulador
+rectangle "Filtro de recuperación" as Filtro
+
+Generador --> Modulador
+Modulador --> SumadorI : I
+Modulador --> SumadorQ : Q
+SumadorI --> FiltroLP
+SumadorQ --> FiltroLP
+FiltroLP --> Canal
+Canal --> FiltroHP
+FiltroHP --> Demodulador
+Demodulador --> Filtro
+
+SumadorI -down-> FiltroHP : I
+SumadorQ -down-> FiltroHP : Q
+Demodulador -down-> Filtro : Señal demodulada
+
+note right of Generador
+  Genera la señal digital a transmitir
+end note
+
+note right of Modulador
+  Modula la señal digital usando la técnica 4QAM
+end note
+
+note right of SumadorI
+  Suma la señal I modulada con una señal de portadora en fase
+end note
+
+note right of SumadorQ
+  Suma la señal Q modulada con una señal de portadora en cuadratura
+end note
+
+note right of FiltroLP
+  Filtra las frecuencias altas de la señal modulada
+end note
+
+note right of Canal
+  Transmite la señal modulada
+end note
+
+note right of FiltroHP
+  Filtra las frecuencias bajas de la señal recibida
+end note
+
+note right of Demodulador
+  Demodula la señal recibida
+end note
+
+note right of Filtro
+  Recupera la señal original
+end note
+
+@enduml

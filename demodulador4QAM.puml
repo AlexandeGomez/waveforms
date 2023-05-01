@@ -1,0 +1,31 @@
+@startuml
+title Bloque Demodulador 4QAM
+
+rectangle "Filtro de paso bajo" as FiltroLP
+rectangle "Filtro de paso alto" as FiltroHP
+rectangle "Demodulador 4QAM" as Demodulador
+rectangle "Detector de fase" as Detector
+
+FiltroLP --> FiltroHP
+FiltroHP --> Demodulador
+Demodulador --> Detector
+
+Detector -down-> FiltroHP : Señal demodulada
+
+note right of FiltroLP
+  Filtra las frecuencias altas de la señal recibida
+end note
+
+note right of FiltroHP
+  Filtra las frecuencias bajas de la señal recibida
+end note
+
+note right of Demodulador
+  Demodula la señal recibida utilizando la técnica 4QAM
+end note
+
+note right of Detector
+  Detecta la fase de la señal demodulada para recuperar la información
+end note
+
+@enduml
