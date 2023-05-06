@@ -1,0 +1,8 @@
+SE DEBE DE TENER INSTALA UNA VERSION ACTUAL DE JAVA
+Y TENER DESCARGADO EL ARCHIVO 'plantuml.jar'
+
+para crear un diagrama:
+
+1) Crear un archivo de extensión .puml
+2) En la terminal debemos de ejecutar: java -jar plantuml.jar name_of_file.puml
+3) Se creara en la misma carpeta
